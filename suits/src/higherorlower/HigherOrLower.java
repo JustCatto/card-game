@@ -46,7 +46,6 @@ public class HigherOrLower {
 			deck.shuffleDeck();
 		}
 		System.out.println("Your score was- "+score);
-		input.close();
 	}
 
 }
