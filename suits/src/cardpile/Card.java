@@ -4,7 +4,13 @@ public class Card{
  	     	
 	  private String suit;	  	  		      	     	      	     	
 	  private String cardNumber;	  	  		      	     	      	     	
-	  private int value;	  	  		      	     	      	     	
+	  private int value;
+	  
+	  public Card(String suit, String cardNumber, int value) {
+		  this.suit = suit;
+		  this.cardNumber = cardNumber;
+		  this.value = value;
+	  }
 		  	  		      	     	      	     	
 	  public void setSuit(String suit)	  	  		      	     	      	     	
 	  {	  	  		      	     	      	     	

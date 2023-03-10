@@ -3,14 +3,15 @@ import cardpile.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Game {
+public class Blackjack {
 	
 	private Deck deck = new Deck("Main Deck");
 	private ArrayList<Hand> players = new ArrayList<Hand>();
 	private Scanner input = new Scanner(System.in);
 	
 	
-	public void game() {
+	public void game(int players) {
+		this.startGame(players);
 		boolean gameend = false;
 		while (gameend != true) {
 			gameend = true;
@@ -18,7 +19,8 @@ public class Game {
 				Hand currentPlayer = this.players.get(i);
 				if (!currentPlayer.isFinished()){
 					System.out.println("It is player- "+currentPlayer.getDeckName()+"'s Turn.");
-					System.out.println("Deck Value- "+currentPlayer.getValue());
+					System.out.println("Deck Value- "+currentPlayer.getTotalValue());
+					currentPlayer.printHand();
 					if (this.getDrawDecision() == true) {
 						this.drawCard(currentPlayer);
 						gameend = false;
@@ -44,18 +46,30 @@ public class Game {
 		}
 	}
 	
-	public ArrayList<Hand> getWinners(){
-		ArrayList<Hand> winners = new ArrayList<Hand>();
-		int min = players.get(0).getValue()-21;
-		for (int i = 1;i<this.players.size();i++) {
+	public ArrayList<Hand> filterBust(ArrayList<Hand> players){
+		for (int i = 0;i<players.size();i++) {
 			Hand currentPlayer = this.players.get(i);
-			int diff = currentPlayer.getValue()-21;
-			if (min>diff) {
-				min = diff;
-				winners.clear();
-				winners.add(currentPlayer);
-			} else if (min == diff) {
-				winners.add(currentPlayer);
+			if (currentPlayer.getTotalValue() > 21) {
+				players.remove(i);
+			}
+		}
+		return players;
+	}
+	
+	public ArrayList<Hand> getWinners(){
+		ArrayList<Hand> winners = new ArrayList<Hand>();;
+		int min = 99;
+		for (int i = 0;i<this.players.size();i++) {
+			Hand currentPlayer = this.players.get(i);
+			if (currentPlayer.getTotalValue() <= 21) {
+				int diff = 21-currentPlayer.getTotalValue();
+				if (min>diff) {
+					min = diff;
+					winners.clear();
+					winners.add(currentPlayer);
+				} else if (min == diff) {
+					winners.add(currentPlayer);
+				}
 			}
 		}
 		return winners;
@@ -98,7 +112,7 @@ public class Game {
 	
 	public void initPlayers(int p) {
 		for (int i = 0;i < p; i++) {
-			Hand player = new Hand("Player "+Integer.toString(i));
+			Hand player = new Hand("Player "+Integer.toString(i+1));
 			this.players.add(player);
 		}
 	}
