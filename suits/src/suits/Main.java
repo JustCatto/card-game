@@ -1,6 +1,6 @@
 package suits;
-import randomcardpicker.*;
 import higherorlower.*;
+import randomcardpicker.*;
 
 public class Main {
 
