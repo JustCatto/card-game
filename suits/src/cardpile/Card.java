@@ -1,4 +1,4 @@
-package suits;
+package cardpile;
 
 public class Card{	  	  		      	     	      	     	
  	     	

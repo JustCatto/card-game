@@ -1,9 +1,11 @@
 package suits;
+import randomcardpicker.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		CardPicker cardPicker = new CardPicker();
+		cardPicker.pickcards(5);
 
 	}
 
