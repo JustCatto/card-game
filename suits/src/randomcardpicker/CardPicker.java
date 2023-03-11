@@ -14,8 +14,7 @@ public class CardPicker {
 			cards.add(deck.getCard());
 			deck.removeCard(0);
 		}
-		for (int i = 0;i<cards.size();i++) {
-			Card currentCard = cards.get(i);
+		for (Card currentCard:cards) {
 			String suit = currentCard.getSuit();
 			String number = currentCard.getCardNumber();
 			System.out.println(number+" of "+suit+"s");

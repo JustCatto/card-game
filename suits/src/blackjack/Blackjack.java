@@ -15,8 +15,7 @@ public class Blackjack {
 		boolean gameend = false;
 		while (gameend != true) {
 			gameend = true;
-			for (int i = 0;i<this.players.size();i++) {
-				Hand currentPlayer = this.players.get(i);
+			for (Hand currentPlayer:this.players) {
 				if (!currentPlayer.isFinished()){
 					System.out.println("It is player- "+currentPlayer.getDeckName()+"'s Turn.");
 					System.out.println("Deck Value- "+currentPlayer.getTotalValue());
@@ -46,21 +45,10 @@ public class Blackjack {
 		}
 	}
 	
-	public ArrayList<Hand> filterBust(ArrayList<Hand> players){
-		for (int i = 0;i<players.size();i++) {
-			Hand currentPlayer = this.players.get(i);
-			if (currentPlayer.getTotalValue() > 21) {
-				players.remove(i);
-			}
-		}
-		return players;
-	}
-	
 	public ArrayList<Hand> getWinners(){
 		ArrayList<Hand> winners = new ArrayList<Hand>();;
 		int min = 99;
-		for (int i = 0;i<this.players.size();i++) {
-			Hand currentPlayer = this.players.get(i);
+		for (Hand currentPlayer:this.players) {
 			if (currentPlayer.getTotalValue() <= 21) {
 				int diff = 21-currentPlayer.getTotalValue();
 				if (min>diff) {
@@ -99,8 +87,7 @@ public class Blackjack {
 	}
 	
 	public void getStartingCards() {
-		for (int i = 0;i<this.players.size();i++) {
-			Hand currentPlayer = this.players.get(i);
+		for (Hand currentPlayer:this.players) {
 			this.drawCard(currentPlayer);
 		}
 	}

@@ -11,8 +11,7 @@ public class Hand extends Cardpile {
 	
 	public void printHand() {
 		System.out.println(this.deckName+"s Hand-\n\n");
-		for (int i = 0;i<this.pile.size();i++) {
-			Card currentCard = this.pile.get(i);
+		for (Card currentCard:this.pile) {
 			String suit = currentCard.getSuit();
 			String cardNumber = currentCard.getCardNumber();
 			System.out.print(cardNumber+" Of "+suit+"s\t");
@@ -33,16 +32,14 @@ public class Hand extends Cardpile {
 	public int getTotalValue() {
 		int value = 0;
 		ArrayList<Card> aces = new ArrayList<Card>();
-		for (int i = 0;i < this.pile.size();i++) {
-			Card currentCard = this.pile.get(i);
+		for (Card currentCard:this.pile) {
 			if (currentCard.getCardNumber().equals("Ace")) { // This is a REALLY dumb way of weeding out aces, but i 
 				aces.add(currentCard); 						 // literally can't see any other way of doing this.
 			} else {
 				value += currentCard.getValue();
 			}
 		}
-		for (int i = 0;i<aces.size();i++) {
-			Card currentCard = aces.get(i); // For readability, i don't want to go insane
+		for (Card currentCard:aces) {
 			if (value+currentCard.getValue(true) <= 21) {
 				value += currentCard.getValue(true);
 			} else {
