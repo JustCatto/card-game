@@ -13,26 +13,26 @@ public class HigherOrLower {
 		deck.shuffleDeck();
 		boolean lost = false;
 		int score = 0;
+		Card currentCard = deck.getCard();
 		while (lost == false) {
-			Card currentCard = deck.getCard();
 			deck.removeCard(0);
 			Card nextCard = deck.getCard();
 			deck.removeCard(0);
-			System.out.println(currentCard.getValue());
+			System.out.println(currentCard.getCardNumber()+" of "+currentCard.getSuit()+"s");
 			boolean valid = false;
 			while (valid == false) {
 				System.out.println("Higher or lower? [H/L]");
 				String decision = input.nextLine();
 				if (decision.equalsIgnoreCase("H")) {
 					valid = true;
-					if (currentCard.getValue() < nextCard.getValue()) {
+					if (currentCard.getValue() <= nextCard.getValue()) {
 						score++;
 					} else {
 						lost = true;
 					}
 				} else if (decision.equalsIgnoreCase("L")) {
 					valid = true;
-					if (currentCard.getValue() > nextCard.getValue()) {
+					if (currentCard.getValue() >= nextCard.getValue()) {
 						score++;
 					} else {
 						lost = true;
@@ -42,10 +42,11 @@ public class HigherOrLower {
 				}
 			}
 			deck.addCard(currentCard);
-			deck.addCard(nextCard);
+			currentCard = nextCard;
 			deck.shuffleDeck();
 		}
-		System.out.println("Your score was- "+score);
+		System.out.println(currentCard.getCardNumber()+" of "+currentCard.getSuit()+"s");
+		System.out.println("You lost!\nYour score was- "+score);
 	}
 
 }
