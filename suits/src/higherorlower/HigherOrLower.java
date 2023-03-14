@@ -13,11 +13,9 @@ public class HigherOrLower {
 		deck.shuffleDeck();
 		boolean lost = false;
 		int score = 0;
-		Card currentCard = deck.getCard();
+		Card currentCard = deck.drawCard();
 		while (lost == false) {
-			deck.removeCard(0);
-			Card nextCard = deck.getCard();
-			deck.removeCard(0);
+			Card nextCard = deck.drawCard();
 			System.out.println(currentCard.getCardNumber()+" of "+currentCard.getSuit()+"s");
 			boolean valid = false;
 			while (valid == false) {

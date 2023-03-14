@@ -21,7 +21,7 @@ public class Blackjack {
 					System.out.println("Deck Value- "+currentPlayer.getTotalValue());
 					currentPlayer.printHand();
 					if (this.getDrawDecision() == true) {
-						this.drawCard(currentPlayer);
+						currentPlayer.addCard(deck.drawCard());
 						gameend = false;
 					} else {
 						currentPlayer.setFinished(true);  
@@ -88,7 +88,7 @@ public class Blackjack {
 	
 	public void getStartingCards() {
 		for (Hand currentPlayer:this.players) {
-			this.drawCard(currentPlayer);
+			currentPlayer.addCard(deck.drawCard());
 		}
 	}
 	
@@ -102,12 +102,6 @@ public class Blackjack {
 			Hand player = new Hand("Player "+Integer.toString(i+1));
 			this.players.add(player);
 		}
-	}
-	
-	public void drawCard(Hand hand) {
-		Card pickedCard = this.deck.getCard();
-		this.deck.removeCard(0);
-		hand.addCard(pickedCard);
 	}
 
 }

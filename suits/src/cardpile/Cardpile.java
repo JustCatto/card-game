@@ -34,8 +34,11 @@ public class Cardpile {
 		this.pile.remove(i);
 	}
 	
-	public Card getCard() {
-		return this.pile.get(0);
+	public Card drawCard() {
+		Card card = this.pile.get(0);
+		this.pile.remove(0);
+		return card;
+		
 	}
 
 }
