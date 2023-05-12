@@ -23,6 +23,10 @@ public class Blackjack {
 					if (this.getDrawDecision() == true) {
 						currentPlayer.addCard(deck.drawCard());
 						gameend = false;
+						if (currentPlayer.getTotalValue() > 21) {
+							currentPlayer.setFinished(true);
+							System.out.println(currentPlayer.getDeckName()+ ", You Bust!");
+						}
 					} else {
 						currentPlayer.setFinished(true);  
 					}

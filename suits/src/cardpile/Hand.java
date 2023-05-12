@@ -43,7 +43,7 @@ public class Hand extends Cardpile {
 			if (value+currentCard.getValue(true) <= 21) {
 				value += currentCard.getValue(true);
 			} else {
-				value++;
+				value += currentCard.getValue();
 			}
 		}
 		return value;
